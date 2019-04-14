@@ -63,5 +63,21 @@ public class NieTest {
 		
 		assertEquals(nie.getDigitosNie(),9907784);
 	}
+	
+	@Test
+	public void comprobarValorLetraInicial() {
+		NIE nie = new NIE("X9907784L");
+		nie.calcularLetraInicial();
+		assertEquals(nie.getValorLetraInicial(),0);
+		
+		NIE nie1 = new NIE("Y9907784L");
+		nie1.calcularLetraInicial();
+		assertEquals(nie1.getValorLetraInicial(),1);
+		
+		NIE nie2 = new NIE("Z9907784L");
+		nie2.calcularLetraInicial();
+		assertEquals(nie2.getValorLetraInicial(),2);
+		
+	}
 
 }
