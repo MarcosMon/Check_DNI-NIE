@@ -64,15 +64,15 @@ public class NIE {
 
 	}
 
-//	public Character getLetraControlCorrecta() {
-//
-//		return this.letraControlCorrecta;
-//	}
-//
-//	public void setLetraCorrecta(Character letraControlCorrecta) {
-//
-//		this.letraControlCorrecta = letraControlCorrecta;
-//	}
+	public Character getLetraControlCorrecta() {
+
+		return this.letraControlCorrecta;
+	}
+
+	public void setLetraCorrecta(Character letraControlCorrecta) {
+
+		this.letraControlCorrecta = letraControlCorrecta;
+	}
 
 	public void calcularLetraInicial() {
 
@@ -94,6 +94,19 @@ public class NIE {
 		default:
 			break;
 		}
+	}
+	
+	public void calcularLetra() {
+		
+		String concadenados = Integer.toString(this.getValorLetraInicial()) + Integer.toString(this.getDigitosNie());
+
+		int digitosCalcular = Integer.parseInt(concadenados);
+		
+		int posicionLetra = digitosCalcular % TablaAsignacion.getLongitudTabla();
+
+		Character letra = TablaAsignacion.getTablaAsignacion().get(posicionLetra);
+
+		this.setLetraCorrecta(letra);
 	}
 
 }

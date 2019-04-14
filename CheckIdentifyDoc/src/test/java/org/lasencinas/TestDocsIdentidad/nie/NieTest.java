@@ -3,7 +3,11 @@ package org.lasencinas.TestDocsIdentidad.nie;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.junit.Test;
+import org.lasencinas.DocsIdentidad.Dni;
 import org.lasencinas.DocsIdentidad.NIE;
 
 public class NieTest {
@@ -79,5 +83,27 @@ public class NieTest {
 		assertEquals(nie2.getValorLetraInicial(),2);
 		
 	}
+	
+	@Test
+	public void comprobarGetLetraControlCorrecta() {
+		
+		List<String> niesLista = Arrays.asList("Z3149115Y", "X0149115Y", "X3735122Z", "X4821048H", "Y3894320C", "X9684113D",
+				"X1134776W", "Z2089626N", "Y4267460P", "Z8920631V");
 
+		for (String nies : niesLista) {
+
+			String letraNiesLista = "" + nies.charAt(nies.length() - 1);
+
+			NIE nie = new NIE(nies);
+			nie.calcularLetraInicial();
+			nie.calcularLetra();
+			
+
+			String letraCorrecta = "" + nie.getLetraControlCorrecta();
+
+			assertEquals(letraCorrecta, letraNiesLista);
+		}
+	}
+	
+	
 }
