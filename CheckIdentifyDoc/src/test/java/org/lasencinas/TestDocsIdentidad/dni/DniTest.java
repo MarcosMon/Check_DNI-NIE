@@ -41,5 +41,28 @@ public class DniTest {
 		assertNotEquals(letraCorrecta,"S");
 		
 	}
+	
+	
+	@Test
+	public void comprobarGetDigitosDni() {
+		
+		Dni dni = new Dni("41145321s");
+		
+		int digitos = dni.getDigitosDni();
+		
+		
+		assertEquals(digitos,41145321);
+	}
+	
+	@Test
+	public void comprobarGetDigitosDniFail() {
+		
+		Dni dni = new Dni("41145321s");
+		
+		int digitos = dni.getDigitosDni();
+		
+		
+		assertNotEquals(digitos,31114321);
 
+	}
 }

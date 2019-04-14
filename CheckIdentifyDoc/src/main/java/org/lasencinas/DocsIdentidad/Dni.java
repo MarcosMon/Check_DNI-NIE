@@ -36,7 +36,7 @@ public class Dni implements Calcular, Verificar {
 
 	public int getDigitosDni() {
 
-		String digitosString = getDni().substring(0, getLetraDni());
+		String digitosString = getDni().substring(0, this.getDni().length()-1);
 
 		int digitos = Integer.parseInt(digitosString);
 
