@@ -65,4 +65,28 @@ public class DniTest {
 		assertNotEquals(digitos,31114321);
 
 	}
+	
+	@Test
+	public void comprobarLetraCorrecta() {
+		
+		Dni dni = new Dni("43235169");
+		
+		dni.calcularLetra();
+		
+		String letraCorrecta = "" + dni.getLetraCorrecta();
+		
+		assertEquals(letraCorrecta,"E");
+	}
+	
+	@Test
+	public void comprobarLetraIncorrecta() {
+		
+		Dni dni = new Dni("43235169");
+		
+		dni.calcularLetra();
+		
+		String letraCorrecta = "" + dni.getLetraCorrecta();
+		
+		assertNotEquals(letraCorrecta,"S");
+	}
 }

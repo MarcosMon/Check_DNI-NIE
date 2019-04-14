@@ -2,10 +2,12 @@ package org.lasencinas.DocsIdentidad;
 
 import org.lasencinas.Interfaces.Calcular;
 import org.lasencinas.Interfaces.Verificar;
+import org.lasencinas.TablaAsignacion.TablaAsignacion;
 
 public class Dni implements Calcular, Verificar {
 
-	String dni = null;
+	private String dni = null;
+	private Character letraCorrecta;
 
 	public Dni() {
 	}
@@ -33,10 +35,20 @@ public class Dni implements Calcular, Verificar {
 
 		return letraDniMayuscula;
 	}
+	
+	public Character getLetraCorrecta() {
+		
+		return this.letraCorrecta;
+	}
+	
+	public void  setLetraCorrecta(Character letraCorrecta) {
+		
+		this.letraCorrecta = letraCorrecta;
+	}
 
 	public int getDigitosDni() {
 
-		String digitosString = getDni().substring(0, this.getDni().length()-1);
+		String digitosString = getDni().substring(0, this.getDni().length() - 1);
 
 		int digitos = Integer.parseInt(digitosString);
 
@@ -51,6 +63,12 @@ public class Dni implements Calcular, Verificar {
 
 	@Override
 	public void calcularLetra() {
+		
+		int posicionLetra = this.getDigitosDni() % TablaAsignacion.getLongitudTabla();
+		
+		Character letra = TablaAsignacion.getTablaAsignacion().get(posicionLetra);
+		
+		this.setLetraCorrecta(letra);
 
 	}
 
