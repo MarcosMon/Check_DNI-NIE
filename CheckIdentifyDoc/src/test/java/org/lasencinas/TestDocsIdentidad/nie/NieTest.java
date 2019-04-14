@@ -55,5 +55,13 @@ public class NieTest {
 		
 		assertNotEquals(letraInicial,"F");
 	}
+	
+	@Test
+	public void comprbarGetDigitos() {
+		
+		NIE nie = new NIE("Y9907784L");
+		
+		assertEquals(nie.getDigitosNie(),9907784);
+	}
 
 }

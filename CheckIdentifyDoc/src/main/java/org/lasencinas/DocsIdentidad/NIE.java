@@ -3,6 +3,7 @@ package org.lasencinas.DocsIdentidad;
 public class NIE {
 
 	private String nie = null;
+	private Character letraControlCorrecta;
 
 	public NIE() {
 	}
@@ -37,8 +38,17 @@ public class NIE {
 		Character letraInicialMayuscula = Character.toUpperCase(letra);
 
 		return letraInicialMayuscula;
-		
-		
+	}
+	
+
+
+	public int getDigitosNie() {
+
+		String digitosString = getNie().substring(1, this.getNie().length() - 1);
+
+		int digitos = Integer.parseInt(digitosString);
+
+		return digitos;
 	}
 
 }
