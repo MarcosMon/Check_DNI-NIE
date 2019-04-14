@@ -94,7 +94,7 @@ public class Dni implements Calcular, Verificar {
 	}
 
 	@Override
-	public void calcularLetra() {
+	public void calcularLetraControl() {
 
 		if (!this.composicionValida()) {
 

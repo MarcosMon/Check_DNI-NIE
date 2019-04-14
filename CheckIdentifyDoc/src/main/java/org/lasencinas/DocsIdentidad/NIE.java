@@ -3,15 +3,18 @@ package org.lasencinas.DocsIdentidad;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.lasencinas.Interfaces.Calcular;
+import org.lasencinas.Interfaces.Verificar;
 import org.lasencinas.TablaAsignacion.TablaAsignacion;
 import org.lasencinas.enumNIE.EnumNIE;
 
-public class NIE {
+public class NIE implements Verificar,Calcular{
 
 	private String nie = null;
 	private Character letraControlCorrecta;
 	private int letraInicial;
 	private boolean composicionValida;
+	private boolean nieValido;
 
 	public NIE() {
 	}
@@ -77,7 +80,16 @@ public class NIE {
 
 		this.letraControlCorrecta = letraControlCorrecta;
 	}
-	
+
+	public void setNieValido(boolean verificado) {
+		this.nieValido = verificado;
+
+	}
+
+	public boolean nieValido() {
+		return this.nieValido;
+	}
+
 	public void verificarComposicion() {
 
 		Pattern expresionRegular = Pattern.compile("^[XxYyZz]{1}[0-9]{7}[A-HJ-NP-TV-Z]{1}$");
@@ -87,51 +99,78 @@ public class NIE {
 		setComposicionValida(emparejados);
 
 	}
-	
+
 	public boolean composicionValida() {
-		
+
 		return this.composicionValida;
 	}
 
 	private void setComposicionValida(boolean emparejados) {
-		
+
 		this.composicionValida = emparejados;
-		
+
 	}
 
 	public void calcularLetraInicial() {
 
 		String letraInicial = "" + this.getLetraInicial();
 
-		switch (letraInicial) {
-		case "X":
-			setValorLetraInicial(EnumNIE.valueOf("X").getValorLetra());
-			break;
-		case "Y":
+		if (this.composicionValida()) {
+			switch (letraInicial) {
+			case "X":
+				setValorLetraInicial(EnumNIE.valueOf("X").getValorLetra());
+				break;
+			case "Y":
 
-			setValorLetraInicial(EnumNIE.valueOf("Y").getValorLetra());
-			break;
+				setValorLetraInicial(EnumNIE.valueOf("Y").getValorLetra());
+				break;
 
-		case "Z":
+			case "Z":
 
-			setValorLetraInicial(EnumNIE.valueOf("Z").getValorLetra());
-			break;
-		default:
-			break;
-		}
+				setValorLetraInicial(EnumNIE.valueOf("Z").getValorLetra());
+				break;
+			default:
+				System.out.println("Error al obtener el valor de las letras NIE");
+				break;
+			}
+		} else
+			;
 	}
-	
-	public void calcularLetra() {
-		
-		String concadenados = Integer.toString(this.getValorLetraInicial()) + Integer.toString(this.getDigitosNie());
 
-		int digitosCalcular = Integer.parseInt(concadenados);
-		
-		int posicionLetra = digitosCalcular % TablaAsignacion.getLongitudTabla();
+	public void calcularLetraControl() {
 
-		Character letra = TablaAsignacion.getTablaAsignacion().get(posicionLetra);
+		if (this.composicionValida()) {
+			String concadenados = Integer.toString(this.getValorLetraInicial())
+					+ Integer.toString(this.getDigitosNie());
 
-		this.setLetraCorrecta(letra);
+			int digitosCalcular = Integer.parseInt(concadenados);
+
+			int posicionLetra = digitosCalcular % TablaAsignacion.getLongitudTabla();
+
+			Character letra = TablaAsignacion.getTablaAsignacion().get(posicionLetra);
+
+			this.setLetraCorrecta(letra);
+		} else
+			;
+	}
+
+	public void verificarDniValido() {
+
+		if (this.getLetraControl() == this.getLetraControlCorrecta()) {
+
+			setNieValido(true);
+		} else
+			;
+
+	}
+
+	public void mensaje() {
+
+		if (nieValido()) {
+			System.out.println("El NIE -> " + this.getNie() + " Es Correcto.");
+		} else {
+			System.out.println("El NIE -> " + this.getNie() + " No es Correcto.");
+		}
 	}
 
 }

@@ -78,7 +78,7 @@ public class DniTest {
 			Dni dni = new Dni(dnisLista);
 			dni.verificarComposicion();
 
-			dni.calcularLetra();
+			dni.calcularLetraControl();
 
 			String letraCorrecta = "" + dni.getLetraCorrecta();
 
@@ -91,7 +91,7 @@ public class DniTest {
 
 		Dni dni = new Dni("78484464S");
 
-		dni.calcularLetra();
+		dni.calcularLetraControl();
 
 		String letraCorrecta = "" + dni.getLetraCorrecta();
 
@@ -128,7 +128,7 @@ public class DniTest {
 			Dni dni = new Dni(dnisLista);
 
 			dni.verificarComposicion();
-			dni.calcularLetra();
+			dni.calcularLetraControl();
 			dni.verificarDniValido();
 			assertEquals(dni.dniValido(), true);
 
@@ -146,7 +146,7 @@ public class DniTest {
 			Dni dni = new Dni(dnisLista);
 
 			dni.verificarComposicion();
-			dni.calcularLetra();
+			dni.calcularLetraControl();
 			dni.verificarDniValido();
 			assertEquals(dni.dniValido(), false);
 
