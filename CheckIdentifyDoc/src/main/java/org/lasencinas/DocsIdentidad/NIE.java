@@ -1,5 +1,8 @@
 package org.lasencinas.DocsIdentidad;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import org.lasencinas.TablaAsignacion.TablaAsignacion;
 import org.lasencinas.enumNIE.EnumNIE;
 
@@ -8,6 +11,7 @@ public class NIE {
 	private String nie = null;
 	private Character letraControlCorrecta;
 	private int letraInicial;
+	private boolean composicionValida;
 
 	public NIE() {
 	}
@@ -72,6 +76,27 @@ public class NIE {
 	public void setLetraCorrecta(Character letraControlCorrecta) {
 
 		this.letraControlCorrecta = letraControlCorrecta;
+	}
+	
+	public void verificarComposicion() {
+
+		Pattern expresionRegular = Pattern.compile("^[XxYyZz]{1}[0-9]{7}[A-HJ-NP-TV-Z]{1}$");
+		Matcher comprobador = expresionRegular.matcher("" + this.getNie());
+		boolean emparejados = comprobador.matches();
+
+		setComposicionValida(emparejados);
+
+	}
+	
+	public boolean composicionValida() {
+		
+		return this.composicionValida;
+	}
+
+	private void setComposicionValida(boolean emparejados) {
+		
+		this.composicionValida = emparejados;
+		
 	}
 
 	public void calcularLetraInicial() {

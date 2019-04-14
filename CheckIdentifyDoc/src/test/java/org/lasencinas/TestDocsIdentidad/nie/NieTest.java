@@ -1,13 +1,14 @@
 package org.lasencinas.TestDocsIdentidad.nie;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.util.Arrays;
 import java.util.List;
 
 import org.junit.Test;
-import org.lasencinas.DocsIdentidad.Dni;
 import org.lasencinas.DocsIdentidad.NIE;
 
 public class NieTest {
@@ -103,6 +104,25 @@ public class NieTest {
 
 			assertEquals(letraCorrecta, letraNiesLista);
 		}
+	}
+	
+	@Test
+	public void comprobarComposicionValida() {
+		
+		NIE nie = new NIE("Y2345678T");
+
+		nie.verificarComposicion();
+
+		assertTrue(nie.composicionValida());
+	}
+	@Test
+	public void comprobarComposicionNoValida() {
+		
+		NIE nie = new NIE("Z23456T");
+
+		nie.verificarComposicion();
+
+		assertFalse(nie.composicionValida());
 	}
 	
 	
