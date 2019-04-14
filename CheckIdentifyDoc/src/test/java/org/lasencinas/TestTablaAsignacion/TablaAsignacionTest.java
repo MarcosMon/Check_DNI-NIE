@@ -19,6 +19,43 @@ public class TablaAsignacionTest {
 		assertEquals(longitudCorrecta, TablaAsignacion.getLongitudTabla());
 
 	}
+	
+	@Test
+	public void comprobarTablaAsignacionValida() {
+		HashMap<Integer, Character> tabla = new HashMap<Integer, Character>();
+		Character[] letrasDocumento = { 'T', 'R', 'W', 'A', 'G', 'M', 'Y', 'F', 'P', 'D', 'X', 'B', 'N', 'J',
+				'Z', 'S', 'Q', 'V', 'H', 'L', 'C', 'K', 'E' };
+		Pattern expresionRegular = null;
+		Matcher comprobador = null;
+		boolean emparejados = false;
+		String letrasCorrectas = "";
+		String letrasIncorrectas = "";
+
+		for (int posicion = 0; posicion < letrasDocumento.length; posicion++) {
+			tabla.put(posicion, letrasDocumento[posicion]);// Se crea un diccionario con clave valor
+
+		}
+
+		for (int letra = 0; letra < tabla.size(); letra++) {
+
+			expresionRegular = Pattern.compile("[^IOUiou]");
+			comprobador = expresionRegular.matcher("" + tabla.get(letra));
+			emparejados = comprobador.matches();
+
+			if (emparejados) {
+
+				letrasCorrectas += tabla.get(letra);
+			} else {
+				letrasIncorrectas += tabla.get(letra);
+
+			}
+		}
+		assertEquals(letrasIncorrectas, "");
+		assertEquals(letrasIncorrectas.length(), 0);
+		assertEquals(letrasCorrectas, "TRWAGMYFPDXBNJZSQVHLCKE");
+		assertEquals(letrasCorrectas.length(), 23);
+
+	}
 
 	@Test
 	public void comprobarTablaAsignacionNoValidaMayuscula() {
