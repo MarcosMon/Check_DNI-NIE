@@ -1,6 +1,7 @@
 package org.lasencinas.TestDocsIdentidad.nie;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 import org.junit.Test;
 import org.lasencinas.DocsIdentidad.NIE;
@@ -33,6 +34,26 @@ public class NieTest {
 		String letraInicial = "" + nie.getLetraInicial();
 		
 		assertEquals(letraInicial,"Y");
+	}
+	
+	@Test
+	public void comprbarLetraControlFail() {
+		
+		NIE nie = new NIE("Y9907784L");
+		
+		String letraControl = "" + nie.getLetraControl();
+		
+		assertNotEquals(letraControl,"S");
+	}
+	
+	@Test
+	public void comprbarLetraInicialFail() {
+		
+		NIE nie = new NIE("Y9907784L");
+		
+		String letraInicial = "" + nie.getLetraInicial();
+		
+		assertNotEquals(letraInicial,"F");
 	}
 
 }
