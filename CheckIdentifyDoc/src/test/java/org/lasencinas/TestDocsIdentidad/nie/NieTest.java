@@ -14,5 +14,25 @@ public class NieTest {
 		
 		assertEquals(nie.getNie(),"Y9907784L");
 	}
+	
+	@Test
+	public void comprbarLetraControl() {
+		
+		NIE nie = new NIE("Y9907784L");
+		
+		String letraControl = "" + nie.getLetraControl();
+		
+		assertEquals(letraControl,"L");
+	}
+	
+	@Test
+	public void comprbarLetraInicial() {
+		
+		NIE nie = new NIE("Y9907784L");
+		
+		String letraInicial = "" + nie.getLetraInicial();
+		
+		assertEquals(letraInicial,"Y");
+	}
 
 }

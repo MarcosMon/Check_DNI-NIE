@@ -22,5 +22,23 @@ public class NIE {
 
 		this.nie = nie;
 	}
+	
+	public Character getLetraControl() {
+
+		Character letra = getNie().charAt(getNie().length() - 1);
+		Character letraControlMayuscula = Character.toUpperCase(letra);
+
+		return letraControlMayuscula;
+	}
+	
+	public Character getLetraInicial() {
+		
+		Character letra = getNie().charAt(0);
+		Character letraInicialMayuscula = Character.toUpperCase(letra);
+
+		return letraInicialMayuscula;
+		
+		
+	}
 
 }
